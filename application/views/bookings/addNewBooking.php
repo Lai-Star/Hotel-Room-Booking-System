@@ -19,8 +19,32 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" id="" action="<?php echo base_url() ?>booking/addedNewRoomBooking" method="post" role="form">
+                    <form role="form" id="" action="<?php echo base_url() ?>addedNewBooking" method="post" role="form">
                         <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="startDate">From Date</label>
+                                        <div class="input-group">
+                                            <input type="text" id="startDate" name="startDate" value="" class="form-control" placeholder="dd/mm/yyyy"/>
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="endDate">To Date</label>
+                                        <div class="input-group">
+                                            <input type="text" id="endDate" name="endDate" value="" class="form-control" placeholder="dd/mm/yyyy"/>
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
 								<div class="col-md-6">                                
                                     <div class="form-group">
@@ -62,7 +86,7 @@
                                 </div>
                             </div>
                             <div class="row">
-							<div class="col-md-6">                                
+							    <div class="col-md-6">                                
                                     <div class="form-group">
                                         <label for="roomId">Room Number</label>
                                         <select class="form-control" id="roomId" name="roomId">
@@ -71,55 +95,29 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="startDate">From Date</label>
+                                        <label for="customerId">Customer</label>
                                         <div class="input-group">
-                                            <input type="text" id="startDate" name="bookStartDate" value="" class="form-control input-sm" placeholder="dd/mm/yyyy"/>
+                                            <input type="text" value="" class="form-control" id="customerName" name="customerName" placeholder="Find customer by name" />
                                             <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                                <i class="fa fa-search" id="searchCustomer"></i>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="endDate">To Date</label>
-                                        <div class="input-group">
-                                        <input type="text" id="endDate" name="bookEndDate" value="" class="form-control input-sm" placeholder="dd/mm/yyyy"/>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="customerPhone">Customer Phone</label>
-                                        <input type="text" class="form-control" id="customerPhone" name="customerPhone" maxlength="15">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="customerEmail">Customer Email</label>
-                                        <input type="text" class="form-control" id="customerEmail" name="customerEmail" maxlength="128">
+                                        <select class="form-control" id="customerId" name="customerId">
+                                            <option value="">Select Customer</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="bookingComments">Booking Comments</label>
-                                        <textarea name="bookingComments" id="bookingComments" style="width:100%"></textarea>
+                                        <label for="comments">Comments</label>
+                                        <textarea name='comments' id="comments"></textarea>
                                     </div>
                                 </div>
                             </div>
+                            
                         </div><!-- /.box-body -->
     
                         <div class="box-footer">
@@ -161,19 +159,9 @@
         </div>
     </section>
 </div>
-<script type="text/javascript" src="<?= base_url() ?>assets/js/bookings.js" charset="utf-8"></script>
-<script type="text/javascript" src="<?= base_url() ?>assets/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bookings.js" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
-jQuery(document).ready(function(){
-    var nowDate = new Date();
-    var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
-    jQuery('#startDate, #endDate').datepicker({
-        autoclose: true,
-        todayHighlight : true,
-        format: 'dd/mm/yyyy',
-        // startDate : today
-    });
-});
 tinymce.init({
     selector: "textarea",
     plugins: [

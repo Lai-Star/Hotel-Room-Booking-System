@@ -28,4 +28,34 @@ $(document).ready(function(){
 
     $("#sizeId").on("change", getRooms);
     $("#floorId").on("change", getRooms);
+
+    var nowDate = new Date();
+    var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+    jQuery('#startDate, #endDate').datepicker({
+        autoclose: true,
+        todayHighlight : true,
+        format: 'dd/mm/yyyy',
+        // startDate : today
+    });
+
+    var getCustomersByName = function(e){
+
+        var customerName = $("#customerName").val();
+
+        $.ajax({
+            url : baseURL + 'getCustomersByName',
+            type : "POST",
+            data : { 'customerName' : customerName },
+            dataType : 'json',
+        }).done(function(res){
+            var customers = res.customers;
+            var html = '<option value="">Select Customer</option>';
+            customers.forEach ( function(value){
+                html = html + "<option value="+value.customerId+">"+value.customerName+"</option>";
+            });
+            $("#customerId").html(html);
+        });
+    };
+
+    $("#searchCustomer").on("click", getCustomersByName);
 });
